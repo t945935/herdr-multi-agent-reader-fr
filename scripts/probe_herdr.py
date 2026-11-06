@@ -15,13 +15,13 @@ ROOT = Path(__file__).resolve().parent.parent
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--live", action="store_true", help="Créer puis fermer un volet shell de test")
-    parser.add_argument("--agents", choices=["pi", "codex", "opencode"], help="Also start two test agents")
+    parser.add_argument("--agents", choices=["pi", "codex", "opencode"], help="Démarrer aussi deux agents de test")
     parser.add_argument("--receipts", action="store_true", help="Vérifier les reçus propres aux tâches avec scripts/team.py")
     args = parser.parse_args()
     if args.receipts and not args.agents:
-        parser.error("--receipts requires --agents")
+        parser.error("--receipts nécessite --agents")
     if os.environ.get("HERDR_ENV") != "1":
-        raise SystemExit("Run this probe inside a Herdr-managed pane")
+        raise SystemExit("Exécutez cette sonde dans un volet géré par Herdr")
     records, owned = [], []
 
     def command(*argv, timeout=30):
@@ -30,7 +30,7 @@ def main():
         record = {"command": ["herdr", *argv], "started_at": started,
                   "returncode": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
         records.append(record)
-        # Bare command groups print usage on stderr and return 2 on Herdr 0.9.3.
+        # Dans Herdr 0.9.3, un groupe de commandes nu affiche l’aide sur stderr et renvoie le code 2.
         discovery_help = len(argv) == 1 and argv[0] in {"agent", "pane", "workspace", "tab"} and p.returncode == 2
         if p.returncode and not discovery_help:
             raise RuntimeError(p.stderr or p.stdout)
@@ -52,7 +52,7 @@ def main():
             command("pane", "wait-output", pane, "--regex", "^" + marker + "$", "--timeout", "10000")
             shell_output = command("pane", "read", pane, "--source", "recent-unwrapped", "--lines", "20")
             if marker not in [line.strip() for line in str(shell_output).splitlines()]:
-                raise RuntimeError("Marker was echoed in input but not observed as a complete output line")
+                raise RuntimeError("Le marqueur apparaît dans l’entrée, mais pas comme ligne complète de sortie")
             if args.agents:
                 second = command("pane", "split", pane, "--direction", "down", "--cwd", str(ROOT), "--no-focus")["pane"]["pane_id"]
                 owned.append(second)
@@ -68,7 +68,7 @@ def main():
                 for name, token in zip(names, ["BOOK_AGENT_A_OK", "BOOK_AGENT_B_OK"]):
                     state = command("agent", "wait", name, "--timeout", "90000", timeout=100)
                     if state.get("agent", {}).get("agent_status") == "blocked":
-                        raise RuntimeError("Agent blocked; user interaction required")
+                        raise RuntimeError("Agent bloqué ; une intervention de l’utilisateur est nécessaire")
                     command("pane", "wait-output", owned[names.index(name)], "--match", token, "--timeout", "90000", timeout=100)
                     transcript = command("agent", "read", name, "--source", "recent-unwrapped", "--lines", "60")
                     if token not in str(transcript):

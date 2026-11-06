@@ -17,7 +17,7 @@ def test_crud_persists_and_serves_frontend(client):
     for path in ["/static/app.js", "/static/style.css", "/openapi.json"]:
         assert client.get(path).status_code == 200
     assert client.get("/api/tasks").json() == []
-    body = {"title": " Finish the project <script> ", "description": "Apostrophe ' and Français"}
+    body = {"title": " Terminer le projet <script> ", "description": "Apostrophe ' et français"}
     response = client.post("/api/tasks", json=body)
     assert response.status_code == 201
     item = response.json()

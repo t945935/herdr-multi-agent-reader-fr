@@ -1,4 +1,4 @@
-"""Chapter 9: bounded stages, retained exit codes, timeout, explicit acceptance."""
+"""Chapitre 9 : étapes bornées, codes de retour conservés, délai d’attente et acceptation explicite."""
 
 import argparse
 import json
@@ -14,13 +14,13 @@ def run(stages, cwd, output):
     output.mkdir(parents=True, exist_ok=True)
     for index, stage in enumerate(stages):
         if not isinstance(stage.get("command"), list) or not stage["command"]:
-            raise ValueError("Commands must be nonempty argv lists")
+            raise ValueError("Chaque commande doit être une liste argv non vide")
         try:
             completed = subprocess.run(stage["command"], cwd=cwd, capture_output=True,
                                        text=True, timeout=stage.get("timeout", 60))
             code, log = completed.returncode, completed.stdout + completed.stderr
         except subprocess.TimeoutExpired as exc:
-            code, log = 124, f"Timeout after {exc.timeout}s\n"
+            code, log = 124, f"Délai dépassé après {exc.timeout}s\n"
         log_name = f"{index + 1:02d}.log"
         (output / log_name).write_text(log)
         accepted = code == 0 and all((Path(cwd) / p).is_file() for p in stage.get("artifacts", []))

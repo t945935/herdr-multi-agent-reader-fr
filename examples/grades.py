@@ -1,4 +1,4 @@
-"""Shared chapter 2/4/5/6 contract; competition ranking uses unrounded totals."""
+"""Contrat partagé par les chapitres 2, 4, 5 et 6 ; le classement par compétition utilise les totaux non arrondis."""
 
 from collections.abc import Mapping
 from math import isfinite

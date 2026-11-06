@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dispatch to an already-started idle agent; verify a task-specific receipt."""
+"""Attribuer une tâche à un agent déjà démarré et inactif ; vérifier le reçu correspondant."""
 import argparse
 import json
 import os
@@ -22,14 +22,14 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if os.environ.get("HERDR_ENV") != "1":
-        raise SystemExit("Run inside Herdr")
+        raise SystemExit("Exécutez dans Herdr")
     agent = call("agent", "get", args.target)["agent"]
     if agent["agent_status"] not in {"idle", "done"}:
-        raise SystemExit("Agent must be idle/done before this task starts")
+        raise SystemExit("L’agent doit être idle/done avant le démarrage de cette tâche")
     path = args.output.resolve()
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists():
-        raise SystemExit("Choose a new receipt path; do not reuse an earlier task")
+        raise SystemExit("Choisissez un nouveau chemin de reçu ; ne réutilisez pas celui d’une tâche précédente")
     task_id = uuid.uuid4().hex
     prompt = args.prompt.read_text() + (
         f"\n\nCe task_id={task_id}\ncompletion_path={path}\n"
@@ -40,16 +40,16 @@ def main():
     settled = call("agent", "prompt", args.target, prompt, "--wait", "--timeout", "300000")
     state = settled["agent"]["agent_status"]
     if state not in {"idle", "done"} or not path.is_file():
-        raise SystemExit("Agent settled without an accepted receipt; inspect agent get/read")
+        raise SystemExit("L’agent s’est stabilisé sans reçu accepté ; examinez agent get/read")
     receipt = json.loads(path.read_text())
     if receipt.get("task_id") != task_id or receipt.get("status") != "completed" or not receipt.get("summary"):
-        raise SystemExit("Receipt does not accept this task")
+        raise SystemExit("Le reçu ne valide pas cette tâche")
     for artifact in receipt.get("artifacts", []):
         candidate = Path(artifact)
         if not candidate.is_absolute():
             candidate = Path.cwd() / candidate
         if not candidate.is_file():
-            raise SystemExit(f"Missing artifact: {artifact}")
+            raise SystemExit(f"Artefact manquant : {artifact}")
     print(json.dumps(receipt, ensure_ascii=False, indent=2))
 
 

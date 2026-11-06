@@ -1,5 +1,5 @@
 {
-  "question": "How should local LLMs and multi-agent coding environments be selected and layered?",
+  "question": "Comment choisir et combiner des LLM locaux et un environnement de programmation multi-agent ?",
   "sources": [
     {
       "id": "S1",
@@ -39,7 +39,7 @@
   ],
   "claims": [
     {
-      "text": "A wait confirms a lifecycle state, but the deliverable still needs acceptance checks",
+      "text": "Une attente confirme un état du cycle de vie, mais le livrable doit encore satisfaire des contrôles d’acceptation.",
       "status": "supported",
       "evidence": [
         {
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "text": "pane wait-output suits ordinary process output; agent wait suits agents",
+      "text": "Utiliser pane wait-output pour la sortie d’un processus ordinaire et agent wait pour l’état d’un agent.",
       "status": "supported",
       "evidence": [
         {
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "text": "Ollama offers a local inference endpoint and also supports cloud usage",
+      "text": "Ollama propose une API d’inférence locale et prend aussi en charge un usage cloud.",
       "status": "supported",
       "evidence": [
         {
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "text": "llama.cpp server provides model REST APIs and a web UI",
+      "text": "Le serveur llama.cpp fournit des API REST de modèles ainsi qu’une interface web.",
       "status": "supported",
       "evidence": [
         {
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "text": "A coding CLI can inspect and change code and run commands in a terminal",
+      "text": "Une CLI de programmation peut inspecter et modifier du code et lancer des commandes dans un terminal.",
       "status": "supported",
       "evidence": [
         {
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "text": "More agents necessarily make local LLM research more accurate",
+      "text": "Ajouter des agents ne garantit pas à lui seul une recherche locale plus exacte.",
       "status": "uncertain",
       "evidence": []
     }

@@ -1,4 +1,4 @@
-"""Chapter 8: validate claim-to-source evidence and produce an auditable report."""
+"""Chapitre 8 : valider les preuves associées aux affirmations et produire un rapport vérifiable."""
 
 import argparse
 import json
@@ -8,32 +8,32 @@ from urllib.parse import urlparse
 
 def validate(data):
     if not isinstance(data, dict) or not data.get("question"):
-        raise ValueError("A research question is required")
+        raise ValueError("Une question de recherche est obligatoire")
     sources = data.get("sources", [])
     if not isinstance(sources, list) or not sources:
-        raise ValueError("Sources are required")
+        raise ValueError("Des sources sont obligatoires")
     by_id = {}
     for source in sources:
         if not {"id", "url", "title", "accessed", "kind"} <= source.keys():
-            raise ValueError("Incomplete source")
+            raise ValueError("La fiche source est incomplète")
         parsed = urlparse(source["url"])
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-            raise ValueError("Source URL must be HTTP(S)")
+            raise ValueError("L’URL de la source doit utiliser HTTP ou HTTPS")
         if source["id"] in by_id:
-            raise ValueError("Duplicate source id")
+            raise ValueError("L’identifiant de source est dupliqué")
         by_id[source["id"]] = source
     claims = data.get("claims", [])
     if not claims:
-        raise ValueError("Claims are required")
+        raise ValueError("Des affirmations sont obligatoires")
     for claim in claims:
         if not claim.get("text") or claim.get("status") not in {"supported", "uncertain", "conflict"}:
-            raise ValueError("Invalid claim")
+            raise ValueError("L’affirmation est invalide")
         evidence = claim.get("evidence", [])
         if claim["status"] == "supported" and not evidence:
-            raise ValueError("Supported claims require evidence")
+            raise ValueError("Une affirmation étayée doit comporter des preuves")
         for item in evidence:
             if item.get("source") not in by_id or not item.get("quote"):
-                raise ValueError("Evidence requires a known source and a quote")
+                raise ValueError("La preuve doit citer une source connue et inclure une citation")
     return by_id
 
 

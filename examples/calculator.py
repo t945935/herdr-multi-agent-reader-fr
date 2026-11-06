@@ -1,13 +1,13 @@
-"""Chapter 1: a deliberately small contract for a development/review exercise."""
+"""Chapitre 1 : contrat volontairement restreint pour un exercice de développement et de revue."""
 
 from math import isfinite
 
 
 def _number(value):
     if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError("Expected a number, excluding bool")
+        raise ValueError("Une valeur numérique est attendue ; bool est exclu")
     if not isfinite(value):
-        raise ValueError("Expected a finite number")
+        raise ValueError("Une valeur finie est attendue")
     return value
 
 
@@ -26,5 +26,5 @@ def multiply(a, b):
 def divide(a, b):
     a, b = _number(a), _number(b)
     if b == 0:
-        raise ZeroDivisionError("Cannot divide by zero")
+        raise ZeroDivisionError("La division par zéro est impossible")
     return a / b

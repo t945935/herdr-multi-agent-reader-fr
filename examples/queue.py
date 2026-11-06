@@ -1,7 +1,6 @@
-"""Chapter 10: SQLite leases, bounded retries and ownership-fenced completion.
+"""Chapitre 10 : baux SQLite, nouvelles tentatives limitées et achèvement protégé par la propriété.
 
-At-least-once execution, not exactly-once external side effects. The demonstration
-handler is pure; callers must supply idempotency for their own external writes.
+Exécution au moins une fois ; les effets externes ne sont pas garantis exactement une fois. Le gestionnaire de démonstration est pur ; l’appelant doit assurer l’idempotence de ses propres écritures externes.
 """
 
 import argparse
@@ -43,7 +42,7 @@ class Queue:
 
     def claim(self, lease_seconds=30, now=None):
         if lease_seconds <= 0:
-            raise ValueError("Lease must be positive")
+            raise ValueError("La durée du bail doit être positive")
         now = time.time() if now is None else now
         owner = uuid.uuid4().hex
         with closing(self.connect()) as conn, conn:
@@ -62,7 +61,7 @@ class Queue:
     def heartbeat(self, job, lease_seconds=30, now=None):
         now = time.time() if now is None else now
         if lease_seconds <= 0:
-            raise ValueError("Lease must be positive")
+            raise ValueError("La durée du bail doit être positive")
         with closing(self.connect()) as conn, conn:
             cursor = conn.execute("""UPDATE jobs SET lease_until=? WHERE id=? AND owner=?
               AND state='running' AND lease_until>?""", (now + lease_seconds, job["id"], job["owner"], now))
@@ -92,10 +91,10 @@ def work_once(queue):
     if job is None:
         return False
     try:
-        # A bounded, pure handler keeps the example reproducible without an API key.
+        # Un gestionnaire pur et borné rend l’exemple reproductible sans clé d’API.
         result = {"sum": sum(job["payload"]["numbers"])}
         if not queue.finish(job, result=result):
-            raise RuntimeError("Lease lost before completion")
+            raise RuntimeError("Le bail a expiré avant l’achèvement")
     except (KeyError, TypeError, ValueError) as exc:
         queue.finish(job, error=str(exc))
     return True
