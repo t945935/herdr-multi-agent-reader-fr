@@ -1,0 +1,161 @@
+{
+  "resource_version": "1.0.0",
+  "book_edition": "1.0",
+  "title": "Orchestrer des agents d’IA avec Herdr",
+  "rights_authority": "Happy eBook owns the French-language book copyright and explicitly authorized translation, companion distribution and worldwide sale.",
+  "license": "Aucune licence open source générale n’est accordée. Ce paquet est diffusé en complément du livre français.",
+  "files": {
+    "CHANGELOG.md": {
+      "bytes": 166,
+      "sha256": "51476a8978ae4f5ad4dbdc7c40571e596f49c16bb6e3e77877c1e65e2b0e2921"
+    },
+    "README.md": {
+      "bytes": 736,
+      "sha256": "0688ea37b4497b18eff5e744d69d6e7a5de1abeb56ec885199a62fa1c5b905fa"
+    },
+    "RIGHTS.md": {
+      "bytes": 601,
+      "sha256": "4f5be960a2b2cccfa14bd305768e244af1bdc5e8aa4848cad63ff4d494ed2be1"
+    },
+    "examples/README.md": {
+      "bytes": 1269,
+      "sha256": "8292601ac12433da3074ba9c6c17ed76bcd32c8f9f2851dd71ee9ead8fceab8f"
+    },
+    "examples/__init__.py": {
+      "bytes": 73,
+      "sha256": "62ed4f236c9d67f4d5584080787cc3d6188af45a033836b748edccad286cd50e"
+    },
+    "examples/calculator.py": {
+      "bytes": 671,
+      "sha256": "cb7877d9ceaabb8b472cdb34248f8bf73251f3f2153430bfdc217203f4fe3549"
+    },
+    "examples/grades.py": {
+      "bytes": 2264,
+      "sha256": "a164011629c18d5674ffa8ed0a16cd4070120749a227451554a954f9b2d684cc"
+    },
+    "examples/handoff.py": {
+      "bytes": 1583,
+      "sha256": "608fe4a0ddc024ee26a5b9383bd59c38bb4af719f6f24d373d2d56e4db40f0e5"
+    },
+    "examples/pipeline.py": {
+      "bytes": 2417,
+      "sha256": "55c3f03388b8d7f7ae31bc45fb88b91ad4664d3926b59567eaafd103c791412f"
+    },
+    "examples/prompts/backend.md": {
+      "bytes": 455,
+      "sha256": "9c113a521c0af324536c2203edc00684e81e7f5bc9fb526a4a4e61552e9d9238"
+    },
+    "examples/prompts/database.md": {
+      "bytes": 527,
+      "sha256": "6ad1b1b66dcf49c4063c3e33b093ae82955830f38158e779756b82b21c9150e9"
+    },
+    "examples/prompts/developer.md": {
+      "bytes": 816,
+      "sha256": "d34749807b0aa54d97361333fdef0dfb5eeefb551d781526cca42b931e440ba9"
+    },
+    "examples/prompts/fact-checker.md": {
+      "bytes": 462,
+      "sha256": "823f963e0a5a58b330d6ecf1647e7461db4b867fda23b338c7b29cc6eaa2c171"
+    },
+    "examples/prompts/frontend.md": {
+      "bytes": 527,
+      "sha256": "388f4436a730cccf8ecd0b066115fb74db8e51e855d9ea8af4636bb514e6dc0c"
+    },
+    "examples/prompts/grades-developer.md": {
+      "bytes": 1309,
+      "sha256": "86bce64aa38b05d76388eb8d0ac408af2790f70ccc2ecaa503345870d63b7af4"
+    },
+    "examples/prompts/grades-qa.md": {
+      "bytes": 1159,
+      "sha256": "4efa226891f1d684bcb56b3fb7f90dfb38240a038815eb41beec123a9f01ecff"
+    },
+    "examples/prompts/manager.md": {
+      "bytes": 991,
+      "sha256": "8100a280ec2d2e043238f08c011efb2c2f317cbe1af4b5b0f9f11a3979a3e4c7"
+    },
+    "examples/prompts/qa.md": {
+      "bytes": 433,
+      "sha256": "9d312e0334dec4afc7683d00c9091a72f9b5a59ec273d4458cf244c443aa92ce"
+    },
+    "examples/prompts/receipt-smoke.md": {
+      "bytes": 646,
+      "sha256": "b2f29b0ee612127a66d3ce54cef7aca27ad6ef67cd6eaed08e35213a6d009987"
+    },
+    "examples/prompts/researcher.md": {
+      "bytes": 735,
+      "sha256": "a339132b1255b9b8e29aae1c404d4fc2e7b0e470874846a8266b494f3138d2ef"
+    },
+    "examples/prompts/reviewer-a.md": {
+      "bytes": 903,
+      "sha256": "383b60678ef794dd34b787cab91b0663cce21b9bec0e3ad755b5296c0a52560a"
+    },
+    "examples/prompts/reviewer-b.md": {
+      "bytes": 848,
+      "sha256": "4b02ea727f1381d5d026a6d00346c74ce0bb6481b8f2ba76b1d0a0999501aa21"
+    },
+    "examples/queue.py": {
+      "bytes": 5707,
+      "sha256": "335b4eaf7699ec9640770f6efbad5c46d93293d254be5c00943b8a5d9b5d4ecf"
+    },
+    "examples/research-evidence.json": {
+      "bytes": 2713,
+      "sha256": "3be20afaed1a75a1eaf04e37f521341d3dc020265797d598c8168f13050ab15a"
+    },
+    "examples/research.py": {
+      "bytes": 2639,
+      "sha256": "21c65d338e63901259a04e1fd6370bd7307a4b197bf861f7ecfca81ce1feca51"
+    },
+    "examples/task_manager/__init__.py": {
+      "bytes": 35,
+      "sha256": "1b850b577b9d0d06c07979c05e69f669f6726549b91929ff4c6dae2ec0847681"
+    },
+    "examples/task_manager/db.py": {
+      "bytes": 1953,
+      "sha256": "802d395772fb3667bbb28cbaf72f18e1f93af044767f36b1797c296c181d3202"
+    },
+    "examples/task_manager/main.py": {
+      "bytes": 2364,
+      "sha256": "7cfec96823cf4c2aa32352f6ecaa54928d491a6286bbb13bce625fc9c541dc14"
+    },
+    "examples/task_manager/static/app.js": {
+      "bytes": 2356,
+      "sha256": "6cd5b3220ff18143cd9b73eec97759c8ebddc0b5b1c647e12d7687c019350b5f"
+    },
+    "examples/task_manager/static/index.html": {
+      "bytes": 659,
+      "sha256": "a5b76bc6fe70b318e3bbdc03f0c9413aecda2c9e3d42a293564f64390e9c4ba7"
+    },
+    "examples/task_manager/static/style.css": {
+      "bytes": 658,
+      "sha256": "db5deebc566223289a597ef4aac2275004b787ee6ab842cd54e3876265c9c819"
+    },
+    "requirements.txt": {
+      "bytes": 61,
+      "sha256": "a45dd04a2d8a44160508ffc731ea77102ea2e861535fa92985c2a72b1475c835"
+    },
+    "scripts/make_handoff.py": {
+      "bytes": 679,
+      "sha256": "88edcf30f58f8fb49e931ee472e25cbcceda3297d6182613f2c4ae803cf49c0e"
+    },
+    "scripts/probe_herdr.py": {
+      "bytes": 6249,
+      "sha256": "ce04d8c35d2f6ae8d77fef3910a8ea58cd0d918946585041e6e650847ca167a3"
+    },
+    "scripts/team.py": {
+      "bytes": 2525,
+      "sha256": "73e452ec788124daab5175310e22d04db014a34a673116ab4ec3cb1cbe09c320"
+    },
+    "tests/test_api.py": {
+      "bytes": 2541,
+      "sha256": "359acab9fd6fef1ca9e48cdbe622b2d687f067fae6d0d8d9f9f3c38e17002e80"
+    },
+    "tests/test_contracts.py": {
+      "bytes": 5561,
+      "sha256": "0377cd0d3cce01bb1c38700a43b308b4420a946177a5a0b22cd2518650c18f26"
+    },
+    "tests/test_queue_concurrency.py": {
+      "bytes": 579,
+      "sha256": "bf949e76e4b9769caa17ccaabe9a30d89b248bf21d32b00e9cbe00583a0c5e16"
+    }
+  }
+}
